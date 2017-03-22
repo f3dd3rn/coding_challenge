@@ -27,13 +27,37 @@ describe Max do
       it 'returns the last element and removes it from the stack' do
         input = [3,4,5]
         max = Max.new
-        input.each do |i|
-          max.push(i)
-        end
+        push_multiple(max,input)
         input.reverse.each do |i|
           expect(max.pop).to equal(i)
         end
       end
+    end
+  end
+
+  describe '#max' do
+    it 'returns highest integer' do
+      max = Max.new
+      input = [67,99,5436,7,4793,0]
+      push_multiple(max,input)
+      expect(max.max).to equal(5436)
+    end
+
+    context 'when more than 10 million elements in stack' do
+      it 'returns highest integer' do
+        max = Max.new
+        9999999.times do
+          max.push(rand(0..100000000))
+        end
+        max.push(9999999999)
+        expect(max.max).to equal(9999999999)
+      end
+    end
+  end
+
+  def push_multiple(max, ary)
+    ary.each do |i|
+      max.push(i)
     end
   end
 end
