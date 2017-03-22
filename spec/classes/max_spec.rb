@@ -4,6 +4,7 @@ describe Max do
   before :each do
     @max = Max.new
   end
+
   describe '#push' do
     context 'invalid data' do
       context 'when pushing a negative integer' do
@@ -44,7 +45,7 @@ describe Max do
       expect(@max.max).to equal(5436)
     end
 
-    context 'when more than 10 million elements in stack' do
+    context 'when 10 million elements in stack' do
       it 'returns highest integer' do
         9999999.times do
           @max.push(rand(0..100000000))
